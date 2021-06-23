@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="UserDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="UserDBModelStoreContainer">
+          <EntitySet Name="Administration" EntityType="UserDBModel.Store.Administration" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Equipement" EntityType="UserDBModel.Store.Equipement" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Site" EntityType="UserDBModel.Store.Site" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Superviseur" EntityType="UserDBModel.Store.Superviseur" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_EQUIPEME_ASSOCIATI_ADMINIST" Association="UserDBModel.Store.FK_EQUIPEME_ASSOCIATI_ADMINIST">
+            <End Role="Administration" EntitySet="Administration" />
+            <End Role="Equipement" EntitySet="Equipement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EQUIPEME_ASSOCIATI_SUPERVIS" Association="UserDBModel.Store.FK_EQUIPEME_ASSOCIATI_SUPERVIS">
+            <End Role="Superviseur" EntitySet="Superviseur" />
+            <End Role="Equipement" EntitySet="Equipement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SITE_ASSOCIATI_ADMINIST" Association="UserDBModel.Store.FK_SITE_ASSOCIATI_ADMINIST">
+            <End Role="Administration" EntitySet="Administration" />
+            <End Role="Site" EntitySet="Site" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUPERVIS_ASSOCIATI_ADMINIST" Association="UserDBModel.Store.FK_SUPERVIS_ASSOCIATI_ADMINIST">
+            <End Role="Administration" EntitySet="Administration" />
+            <End Role="Superviseur" EntitySet="Superviseur" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Administration">
+          <Key>
+            <PropertyRef Name="idAdmin" />
+          </Key>
+          <Property Name="idAdmin" Type="int" Nullable="false" />
+          <Property Name="loginAdmin" Type="varchar" MaxLength="254" />
+          <Property Name="passwordAdmin" Type="varchar" MaxLength="254" />
+          <Property Name="localeAdmin" Type="varchar" MaxLength="254" />
+          <Property Name="emailAdmin" Type="varchar" MaxLength="254" />
+          <Property Name="telephoneAdmin" Type="int" />
+          <Property Name="descriptionAdmin" Type="varchar" MaxLength="254" />
+          <Property Name="nomAdmin" Type="varchar" MaxLength="254" />
+          <Property Name="prenomAdmin" Type="varchar" MaxLength="254" />
+          <Property Name="statutAdmin" Type="varchar" MaxLength="254" />
+        </EntityType>
+        <EntityType Name="Equipement">
+          <Key>
+            <PropertyRef Name="idEquipement" />
+          </Key>
+          <Property Name="idEquipement" Type="int" Nullable="false" />
+          <Property Name="idAdmin" Type="int" Nullable="false" />
+          <Property Name="idSprv" Type="int" Nullable="false" />
+          <Property Name="localeEquipement" Type="varchar" MaxLength="254" />
+          <Property Name="adresseIPEquipement" Type="varchar" MaxLength="254" />
+          <Property Name="nomEquipement" Type="varchar" MaxLength="254" />
+          <Property Name="descriptionEquipement" Type="varchar" MaxLength="254" />
+          <Property Name="modeEquipement" Type="bit" />
+        </EntityType>
+        <EntityType Name="Site">
+          <Key>
+            <PropertyRef Name="idSite" />
+          </Key>
+          <Property Name="idSite" Type="int" Nullable="false" />
+          <Property Name="idAdmin" Type="int" Nullable="false" />
+          <Property Name="localeSite" Type="varchar" MaxLength="254" />
+          <Property Name="descriptionSite" Type="varchar" MaxLength="254" />
+          <Property Name="modeSite" Type="bit" />
+        </EntityType>
+        <EntityType Name="Superviseur">
+          <Key>
+            <PropertyRef Name="idSprv" />
+          </Key>
+          <Property Name="idSprv" Type="int" Nullable="false" />
+          <Property Name="idAdmin" Type="int" Nullable="false" />
+          <Property Name="loginSprv" Type="varchar" MaxLength="254" />
+          <Property Name="passwordSprv" Type="varchar" MaxLength="254" />
+          <Property Name="nomSprv" Type="varchar" MaxLength="254" />
+          <Property Name="prenomSprv" Type="varchar" MaxLength="254" />
+          <Property Name="statutSprv" Type="varchar" MaxLength="254" />
+          <Property Name="telephoneSprv" Type="varchar" MaxLength="254" />
+          <Property Name="emailSprv" Type="varchar" MaxLength="254" />
+          <Property Name="localeSprv" Type="varchar" MaxLength="254" />
+        </EntityType>
+        <Association Name="FK_EQUIPEME_ASSOCIATI_ADMINIST">
+          <End Role="Administration" Type="UserDBModel.Store.Administration" Multiplicity="1" />
+          <End Role="Equipement" Type="UserDBModel.Store.Equipement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administration">
+              <PropertyRef Name="idAdmin" />
+            </Principal>
+            <Dependent Role="Equipement">
+              <PropertyRef Name="idAdmin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EQUIPEME_ASSOCIATI_SUPERVIS">
+          <End Role="Superviseur" Type="UserDBModel.Store.Superviseur" Multiplicity="1" />
+          <End Role="Equipement" Type="UserDBModel.Store.Equipement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Superviseur">
+              <PropertyRef Name="idSprv" />
+            </Principal>
+            <Dependent Role="Equipement">
+              <PropertyRef Name="idSprv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SITE_ASSOCIATI_ADMINIST">
+          <End Role="Administration" Type="UserDBModel.Store.Administration" Multiplicity="1" />
+          <End Role="Site" Type="UserDBModel.Store.Site" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administration">
+              <PropertyRef Name="idAdmin" />
+            </Principal>
+            <Dependent Role="Site">
+              <PropertyRef Name="idAdmin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUPERVIS_ASSOCIATI_ADMINIST">
+          <End Role="Administration" Type="UserDBModel.Store.Administration" Multiplicity="1" />
+          <End Role="Superviseur" Type="UserDBModel.Store.Superviseur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administration">
+              <PropertyRef Name="idAdmin" />
+            </Principal>
+            <Dependent Role="Superviseur">
+              <PropertyRef Name="idAdmin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UserDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="UserDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Administrations" EntityType="UserDBModel.Administration" />
+          <EntitySet Name="Equipements" EntityType="UserDBModel.Equipement" />
+          <EntitySet Name="Sites" EntityType="UserDBModel.Site" />
+          <EntitySet Name="Superviseurs" EntityType="UserDBModel.Superviseur" />
+          <AssociationSet Name="FK_EQUIPEME_ASSOCIATI_ADMINIST" Association="UserDBModel.FK_EQUIPEME_ASSOCIATI_ADMINIST">
+            <End Role="Administration" EntitySet="Administrations" />
+            <End Role="Equipement" EntitySet="Equipements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SITE_ASSOCIATI_ADMINIST" Association="UserDBModel.FK_SITE_ASSOCIATI_ADMINIST">
+            <End Role="Administration" EntitySet="Administrations" />
+            <End Role="Site" EntitySet="Sites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUPERVIS_ASSOCIATI_ADMINIST" Association="UserDBModel.FK_SUPERVIS_ASSOCIATI_ADMINIST">
+            <End Role="Administration" EntitySet="Administrations" />
+            <End Role="Superviseur" EntitySet="Superviseurs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EQUIPEME_ASSOCIATI_SUPERVIS" Association="UserDBModel.FK_EQUIPEME_ASSOCIATI_SUPERVIS">
+            <End Role="Superviseur" EntitySet="Superviseurs" />
+            <End Role="Equipement" EntitySet="Equipements" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Administration">
+          <Key>
+            <PropertyRef Name="idAdmin" />
+          </Key>
+          <Property Name="idAdmin" Type="Int32" Nullable="false" />
+          <Property Name="loginAdmin" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="passwordAdmin" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="localeAdmin" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="emailAdmin" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="telephoneAdmin" Type="Int32" />
+          <Property Name="descriptionAdmin" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="nomAdmin" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="prenomAdmin" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="statutAdmin" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Equipements" Relationship="UserDBModel.FK_EQUIPEME_ASSOCIATI_ADMINIST" FromRole="Administration" ToRole="Equipement" />
+          <NavigationProperty Name="Sites" Relationship="UserDBModel.FK_SITE_ASSOCIATI_ADMINIST" FromRole="Administration" ToRole="Site" />
+          <NavigationProperty Name="Superviseurs" Relationship="UserDBModel.FK_SUPERVIS_ASSOCIATI_ADMINIST" FromRole="Administration" ToRole="Superviseur" />
+        </EntityType>
+        <EntityType Name="Equipement">
+          <Key>
+            <PropertyRef Name="idEquipement" />
+          </Key>
+          <Property Name="idEquipement" Type="Int32" Nullable="false" />
+          <Property Name="idAdmin" Type="Int32" Nullable="false" />
+          <Property Name="idSprv" Type="Int32" Nullable="false" />
+          <Property Name="localeEquipement" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="adresseIPEquipement" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="nomEquipement" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="descriptionEquipement" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="modeEquipement" Type="Boolean" />
+          <NavigationProperty Name="Administration" Relationship="UserDBModel.FK_EQUIPEME_ASSOCIATI_ADMINIST" FromRole="Equipement" ToRole="Administration" />
+          <NavigationProperty Name="Superviseur" Relationship="UserDBModel.FK_EQUIPEME_ASSOCIATI_SUPERVIS" FromRole="Equipement" ToRole="Superviseur" />
+        </EntityType>
+        <EntityType Name="Site">
+          <Key>
+            <PropertyRef Name="idSite" />
+          </Key>
+          <Property Name="idSite" Type="Int32" Nullable="false" />
+          <Property Name="idAdmin" Type="Int32" Nullable="false" />
+          <Property Name="localeSite" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="descriptionSite" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="modeSite" Type="Boolean" />
+          <NavigationProperty Name="Administration" Relationship="UserDBModel.FK_SITE_ASSOCIATI_ADMINIST" FromRole="Site" ToRole="Administration" />
+        </EntityType>
+        <EntityType Name="Superviseur">
+          <Key>
+            <PropertyRef Name="idSprv" />
+          </Key>
+          <Property Name="idSprv" Type="Int32" Nullable="false" />
+          <Property Name="idAdmin" Type="Int32" Nullable="false" />
+          <Property Name="loginSprv" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="passwordSprv" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="nomSprv" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="prenomSprv" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="statutSprv" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="telephoneSprv" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="emailSprv" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <Property Name="localeSprv" Type="String" MaxLength="254" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Administration" Relationship="UserDBModel.FK_SUPERVIS_ASSOCIATI_ADMINIST" FromRole="Superviseur" ToRole="Administration" />
+          <NavigationProperty Name="Equipements" Relationship="UserDBModel.FK_EQUIPEME_ASSOCIATI_SUPERVIS" FromRole="Superviseur" ToRole="Equipement" />
+        </EntityType>
+        <Association Name="FK_EQUIPEME_ASSOCIATI_ADMINIST">
+          <End Role="Administration" Type="UserDBModel.Administration" Multiplicity="1" />
+          <End Role="Equipement" Type="UserDBModel.Equipement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administration">
+              <PropertyRef Name="idAdmin" />
+            </Principal>
+            <Dependent Role="Equipement">
+              <PropertyRef Name="idAdmin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SITE_ASSOCIATI_ADMINIST">
+          <End Role="Administration" Type="UserDBModel.Administration" Multiplicity="1" />
+          <End Role="Site" Type="UserDBModel.Site" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administration">
+              <PropertyRef Name="idAdmin" />
+            </Principal>
+            <Dependent Role="Site">
+              <PropertyRef Name="idAdmin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUPERVIS_ASSOCIATI_ADMINIST">
+          <End Role="Administration" Type="UserDBModel.Administration" Multiplicity="1" />
+          <End Role="Superviseur" Type="UserDBModel.Superviseur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administration">
+              <PropertyRef Name="idAdmin" />
+            </Principal>
+            <Dependent Role="Superviseur">
+              <PropertyRef Name="idAdmin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EQUIPEME_ASSOCIATI_SUPERVIS">
+          <End Role="Superviseur" Type="UserDBModel.Superviseur" Multiplicity="1" />
+          <End Role="Equipement" Type="UserDBModel.Equipement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Superviseur">
+              <PropertyRef Name="idSprv" />
+            </Principal>
+            <Dependent Role="Equipement">
+              <PropertyRef Name="idSprv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UserDBModelStoreContainer" CdmEntityContainer="UserDBEntities">
+          <EntitySetMapping Name="Administrations">
+            <EntityTypeMapping TypeName="UserDBModel.Administration">
+              <MappingFragment StoreEntitySet="Administration">
+                <ScalarProperty Name="idAdmin" ColumnName="idAdmin" />
+                <ScalarProperty Name="loginAdmin" ColumnName="loginAdmin" />
+                <ScalarProperty Name="passwordAdmin" ColumnName="passwordAdmin" />
+                <ScalarProperty Name="localeAdmin" ColumnName="localeAdmin" />
+                <ScalarProperty Name="emailAdmin" ColumnName="emailAdmin" />
+                <ScalarProperty Name="telephoneAdmin" ColumnName="telephoneAdmin" />
+                <ScalarProperty Name="descriptionAdmin" ColumnName="descriptionAdmin" />
+                <ScalarProperty Name="nomAdmin" ColumnName="nomAdmin" />
+                <ScalarProperty Name="prenomAdmin" ColumnName="prenomAdmin" />
+                <ScalarProperty Name="statutAdmin" ColumnName="statutAdmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipements">
+            <EntityTypeMapping TypeName="UserDBModel.Equipement">
+              <MappingFragment StoreEntitySet="Equipement">
+                <ScalarProperty Name="idEquipement" ColumnName="idEquipement" />
+                <ScalarProperty Name="idAdmin" ColumnName="idAdmin" />
+                <ScalarProperty Name="idSprv" ColumnName="idSprv" />
+                <ScalarProperty Name="localeEquipement" ColumnName="localeEquipement" />
+                <ScalarProperty Name="adresseIPEquipement" ColumnName="adresseIPEquipement" />
+                <ScalarProperty Name="nomEquipement" ColumnName="nomEquipement" />
+                <ScalarProperty Name="descriptionEquipement" ColumnName="descriptionEquipement" />
+                <ScalarProperty Name="modeEquipement" ColumnName="modeEquipement" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sites">
+            <EntityTypeMapping TypeName="UserDBModel.Site">
+              <MappingFragment StoreEntitySet="Site">
+                <ScalarProperty Name="idSite" ColumnName="idSite" />
+                <ScalarProperty Name="idAdmin" ColumnName="idAdmin" />
+                <ScalarProperty Name="localeSite" ColumnName="localeSite" />
+                <ScalarProperty Name="descriptionSite" ColumnName="descriptionSite" />
+                <ScalarProperty Name="modeSite" ColumnName="modeSite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Superviseurs">
+            <EntityTypeMapping TypeName="UserDBModel.Superviseur">
+              <MappingFragment StoreEntitySet="Superviseur">
+                <ScalarProperty Name="idSprv" ColumnName="idSprv" />
+                <ScalarProperty Name="idAdmin" ColumnName="idAdmin" />
+                <ScalarProperty Name="loginSprv" ColumnName="loginSprv" />
+                <ScalarProperty Name="passwordSprv" ColumnName="passwordSprv" />
+                <ScalarProperty Name="nomSprv" ColumnName="nomSprv" />
+                <ScalarProperty Name="prenomSprv" ColumnName="prenomSprv" />
+                <ScalarProperty Name="statutSprv" ColumnName="statutSprv" />
+                <ScalarProperty Name="telephoneSprv" ColumnName="telephoneSprv" />
+                <ScalarProperty Name="emailSprv" ColumnName="emailSprv" />
+                <ScalarProperty Name="localeSprv" ColumnName="localeSprv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model">
+        <EntityTypeShape EntityType="UserDBModel.Administration" Width="1.5" PointX="0.75" PointY="4.5" Height="3.5186979166666656" IsExpanded="true" />
+        <EntityTypeShape EntityType="UserDBModel.Equipement" Width="1.5" PointX="5.25" PointY="7.375" Height="2.9417936197916665" IsExpanded="true" />
+        <EntityTypeShape EntityType="UserDBModel.Site" Width="1.5" PointX="3" PointY="6.875" Height="2.1725878906250005" IsExpanded="true" />
+        <EntityTypeShape EntityType="UserDBModel.Superviseur" Width="1.5" PointX="3" PointY="9.75" Height="3.3263964843749996" IsExpanded="true" />
+        <AssociationConnector Association="UserDBModel.FK_EQUIPEME_ASSOCIATI_ADMINIST" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="5.65625" />
+          <ConnectorPoint PointX="6" PointY="5.65625" />
+          <ConnectorPoint PointX="6" PointY="7.375" />
+        </AssociationConnector>
+        <AssociationConnector Association="UserDBModel.FK_SITE_ASSOCIATI_ADMINIST" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="7.4468489583333328" />
+          <ConnectorPoint PointX="3" PointY="7.4468489583333328" />
+        </AssociationConnector>
+        <AssociationConnector Association="UserDBModel.FK_SUPERVIS_ASSOCIATI_ADMINIST" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="8.0186979166666656" />
+          <ConnectorPoint PointX="1.5" PointY="11.4131982421875" />
+          <ConnectorPoint PointX="3" PointY="11.4131982421875" />
+        </AssociationConnector>
+        <AssociationConnector Association="UserDBModel.FK_EQUIPEME_ASSOCIATI_SUPERVIS" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="10.033396809895834" />
+          <ConnectorPoint PointX="5.25" PointY="10.033396809895834" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

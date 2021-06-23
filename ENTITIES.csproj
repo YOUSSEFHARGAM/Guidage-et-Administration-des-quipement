@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3C59E29E-51EE-4B73-A474-A2DF4DF2B0FF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ENTITIES</RootNamespace>
+    <AssemblyName>ENTITIES</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Acceuil.aspx.cs">
+      <DependentUpon>Acceuil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ChangePasswordSuccess.aspx.cs">
+      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AuthentificationADMINISTRATEUR.aspx1.cs" />
+    <Compile Include="AuthentificationSUPERVISEUR.aspx.cs">
+      <DependentUpon>AuthentificationSUPERVISEUR.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gestion_Contact.aspx.cs">
+      <DependentUpon>Gestion_Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gestion_Equipement.aspx.cs">
+      <DependentUpon>Gestion_Equipement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gestion_Site.aspx.cs">
+      <DependentUpon>Gestion_Site.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Index.aspx.cs" />
+    <Compile Include="Maintenance_Equipement.aspx.cs">
+      <DependentUpon>Maintenance_Equipement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.aspx.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Site.master.cs">
+      <DependentUpon>Site.master</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About.aspx" />
+    <Content Include="Acceuil.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Account\ChangePassword.aspx" />
+    <Content Include="Account\ChangePasswordSuccess.aspx" />
+    <Content Include="Account\Login.aspx" />
+    <Content Include="Account\Register.aspx" />
+    <Content Include="assets\css\bootstrap-fileupload.min.css" />
+    <Content Include="assets\css\bootstrap-wysihtml5-hack.css" />
+    <Content Include="assets\css\calendar.css" />
+    <Content Include="assets\css\countdown.css" />
+    <Content Include="assets\css\error.css" />
+    <Content Include="assets\css\jqstooltip.css" />
+    <Content Include="assets\css\jquery-ui.css" />
+    <Content Include="assets\css\jquery.cleditor-hack.css" />
+    <Content Include="assets\css\layout2.css" />
+    <Content Include="assets\css\layout2.min.css" />
+    <Content Include="assets\css\MoneAdmin.css" />
+    <Content Include="assets\css\Offline.css" />
+    <Content Include="assets\img\1.png" />
+    <Content Include="assets\img\2.png" />
+    <Content Include="assets\img\2G.jpg" />
+    <Content Include="assets\img\2G_B.jpg" />
+    <Content Include="assets\img\3.png" />
+    <Content Include="assets\img\4.png" />
+    <Content Include="assets\img\bg.png" />
+    <Content Include="assets\img\cp.png" />
+    <Content Include="assets\img\user.gif" />
+    <Content Include="assets\img\user_old.gif" />
+    <Content Include="AuthentificationADMINISTRATEUR1.aspx" />
+    <Content Include="AuthentificationSUPERVISEUR.aspx" />
+    <Content Include="Contact.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Gestion_Contact.aspx" />
+    <Content Include="Gestion_Equipement.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Gestion_Site.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="license.txt" />
+    <Content Include="Maintenance_Equipement.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="PROJET_DeliceDanone.csproj" />
+    <Content Include="README.txt" />
+    <Content Include="Settings.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".DS_Store" />
+    <None Include="Account\Web.config" />
+    <None Include="Site.master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="assets\js\" />
+    <Folder Include="assets\plugins\animate\source\" />
+    <Folder Include="assets\plugins\bootstrap\css\" />
+    <Folder Include="assets\plugins\bootstrap\js\" />
+    <Folder Include="assets\plugins\chosen\docsupport\" />
+    <Folder Include="assets\plugins\CLEditor1_4_3\images\" />
+    <Folder Include="assets\plugins\colorpicker\img\" />
+    <Folder Include="assets\plugins\countdown\" />
+    <Folder Include="assets\plugins\cssbeautify\assets\thirdparty\" />
+    <Folder Include="assets\plugins\egorkhmelev-jslider\img\" />
+    <Folder Include="assets\plugins\egorkhmelev-jslider\js\" />
+    <Folder Include="assets\plugins\flot\examples\ajax\" />
+    <Folder Include="assets\plugins\flot\examples\axes-time-zones\tz\" />
+    <Folder Include="assets\plugins\Font-Awesome\css\" />
+    <Folder Include="assets\plugins\Font-Awesome\less\" />
+    <Folder Include="assets\plugins\Font-Awesome\scss\" />
+    <Folder Include="assets\plugins\Font-Awesome\src\assets\less\bootstrap-2.3.2\" />
+    <Folder Include="assets\plugins\Font-Awesome\src\_includes\examples\" />
+    <Folder Include="assets\plugins\Font-Awesome\src\_includes\icons\" />
+    <Folder Include="assets\plugins\Font-Awesome\src\_includes\tests\" />
+    <Folder Include="assets\plugins\fonts\" />
+    <Folder Include="assets\plugins\formwizard\examples\css\base\images\" />
+    <Folder Include="assets\plugins\formwizard\examples\css\ui-lightness\images\" />
+    <Folder Include="css\" />
+    <Folder Include="Images\" />
+    <Folder Include="img\" />
+    <Folder Include="js\" />
+    <Folder Include="Scripts\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
